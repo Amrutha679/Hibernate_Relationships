@@ -62,10 +62,10 @@ public class MainLogic {
 		st3.setStudentId(103);
 		st3.setStudentName("Keerthan");
 		
-		Set set1 = new HashSet();
-		set1.add(st);
-		set1.add(st2);
-		set1.add(st3);
+		Set students = new HashSet();
+		students.add(st);
+		students.add(st2);
+		students.add(st3);
 		
 		Course c = new Course();
 		c.setCourseId(201);
@@ -75,13 +75,14 @@ public class MainLogic {
 		cs.setCourseId(202);
 		cs.setCourseName("React Js");
 		
-		Set set2 = new HashSet();
-		set.add(c);
-		set.add(cs);
+		Set courses = new HashSet();
+		courses.add(c);
+		courses.add(cs);
 		
-		st2.setObj(set2);
-		c.setObj2(set1);
-		cs.setObj2(set1);
+		st2.setCourses(courses);
+		st.setCourses(courses);
+		c.setStudents(students);
+		cs.setStudents(students);
 		
 		se.save(c);
 		se.save(cs);

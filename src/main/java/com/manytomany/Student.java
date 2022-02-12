@@ -25,9 +25,16 @@ public class Student {
 	@Column(name="sname")
 	private String studentName;
 	
-	@ManyToMany(fetch=FetchType.LAZY,targetEntity = Course.class,cascade = CascadeType.ALL)
-	@JoinColumn(name="courseid")
-	private Set obj;
+	@ManyToMany(mappedBy = "students")
+	private Set<Course>courses;
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
 
 	public int getStudentId() {
 		return studentId;
@@ -43,14 +50,6 @@ public class Student {
 
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
-	}
-
-	public Set getObj() {
-		return obj;
-	}
-
-	public void setObj(Set obj) {
-		this.obj = obj;
 	}
 	
 }

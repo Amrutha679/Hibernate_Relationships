@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -23,8 +24,18 @@ public class Course {
 	private String courseName;
 	
 	@ManyToMany(fetch=FetchType.LAZY,targetEntity = Student.class,cascade = CascadeType.ALL)
-	@JoinColumn(name="studentid")
-	private Set obj2;
+	@JoinTable(name="student_course",
+    joinColumns=@JoinColumn(name="cid"),
+    inverseJoinColumns=@JoinColumn(name="sid"))
+	private Set<Student> students;
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 
 	public int getCourseId() {
 		return courseId;
@@ -40,13 +51,5 @@ public class Course {
 
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
-	}
-
-	public Set getObj2() {
-		return obj2;
-	}
-
-	public void setObj2(Set obj2) {
-		this.obj2 = obj2;
 	}
 }
